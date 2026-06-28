@@ -11,7 +11,7 @@ public class UserClient {
 
     private static final String BASE_PATH = "/api/auth/register";
     private static final String LOGIN_PATH = "/api/auth/login";
-    private static final String REMOVE_PATH = "/api/auth/user";
+    private static final String USER_DATA_PATH = "/api/auth/user";
 
     @Step("Регистрация нового пользователя")
     public Response createUser(User user) {
@@ -38,7 +38,7 @@ public class UserClient {
     public void removeUser(String bearerToken) {
         given()
                 .header("Authorization", bearerToken)
-                .delete(REMOVE_PATH);
+                .delete(USER_DATA_PATH);
     }
 
 
@@ -50,7 +50,7 @@ public class UserClient {
                 .and()
                 .body(user)
                 .when()
-                .patch(REMOVE_PATH);
+                .patch(USER_DATA_PATH);
     }
 
     @Step("Изменение данных пользователя. Без авторизации")
@@ -60,6 +60,6 @@ public class UserClient {
                 .and()
                 .body(user)
                 .when()
-                .patch(REMOVE_PATH);
+                .patch(USER_DATA_PATH);
     }
 }
